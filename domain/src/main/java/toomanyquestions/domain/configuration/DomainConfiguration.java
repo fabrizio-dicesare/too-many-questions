@@ -27,7 +27,9 @@ public class DomainConfiguration {
 	@Bean
 	@Scope("prototype")
 	public Contact contact(String fullName, Gender gender, Date birthDate) {
-		return new Contact(fullName, gender, birthDate);
+		Contact contact = new Contact(fullName, gender, birthDate);
+		contact.setComparator(contactComparator());
+		return contact;
 	}
 	
 	@Bean
@@ -57,7 +59,7 @@ public class DomainConfiguration {
 	}
 	
 	@Bean 
-	public AddressBookRepository addressBookRepository() {
+	public AddressBookRepository addressBookRepository() {		
 		return new CSVAddressBookRepository(contactParser(), "C:\\AddressBooks");
 	}
 	

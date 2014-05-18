@@ -20,4 +20,12 @@ public interface ContactsFilterStrategy {
 	 * @return A sublist containing the contacts of the given gender
 	 */
 	List<Contact> filterByGender(List<Contact> contactsToFilter, Gender gender);
+	
+	/**
+	 * Returns a sublist of the given list, containing only the contacts of a given name 
+	 * @param contactsToFilter List of contacts to be filtered
+	 * @param name Name by which the contacts should be filtered
+	 * @return A sublist containing the contacts of the given name
+	 */
+	List<Contact> filterByName(List<Contact> contactsToFilter, String name);
 }

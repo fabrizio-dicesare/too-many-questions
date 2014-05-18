@@ -70,10 +70,15 @@ public class AddressBookTest
 			//Create an address book
 			AddressBook addressBook = (AddressBook) ctx.getBean("addressBook", "MyAddressBook", contacts);
 			
-			//Filter Males
+			//Sort book contacts
 			addressBook.sortContactsByDate();
 			
-			assertThat("Sort count", addressBook.getContacts().size(), equalTo(3));
+			assertThat("After sort size", addressBook.getContacts().size(), equalTo(3));
+			
+			//Assert contacts order
+			assertThat("First contact", addressBook.getContacts().get(0).getFullName(), equalTo("Gianluca"));
+			assertThat("Second contact", addressBook.getContacts().get(1).getFullName(), equalTo("Fabrizio"));
+			assertThat("Third contact", addressBook.getContacts().get(2).getFullName(), equalTo("Emanuela"));
 		}
     }
 }

@@ -15,4 +15,9 @@ public class SimpleContactsFilterStrategy implements ContactsFilterStrategy {
 		return contactsToFilter.stream().filter(c -> c.getGender() == gender).collect(Collectors.toList());		
 	}
 
+	@Override
+	public List<Contact> filterByName(List<Contact> contactsToFilter, String name) {
+		return contactsToFilter.stream().filter(c -> c.getFullName().equals(name)).collect(Collectors.toList());
+	}
+
 }

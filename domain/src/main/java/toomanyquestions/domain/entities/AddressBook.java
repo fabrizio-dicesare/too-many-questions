@@ -57,6 +57,10 @@ public class AddressBook {
 		return filter.filterByGender(this.contacts, gender);
 	}
 	
+	public List<Contact> filterContactsByName(String name) {
+		return filter.filterByName(this.contacts, name);
+	}
+	
 	public void sortContactsByDate() {
 		this.contacts = sort.sortByDate(this.contacts);
 	}
