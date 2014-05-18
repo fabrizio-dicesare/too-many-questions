@@ -13,11 +13,20 @@ public class AddressBook {
 	private String name;
 	private List<Contact> contacts;
 	private ContactsFilterStrategy filter;
+	private ContactsSortStrategy sort;
 	
 	public AddressBook(String name, List<Contact> contacts) {
 		super();
 		this.name = name;
 		this.contacts = contacts;
+	}
+	
+	public ContactsSortStrategy getSort() {
+		return sort;
+	}
+
+	public void setSort(ContactsSortStrategy sort) {
+		this.sort = sort;
 	}
 
 	public String getName() {
@@ -46,5 +55,9 @@ public class AddressBook {
 	
 	public List<Contact> filterContactsByGender(Contact.Gender gender) {
 		return filter.filterByGender(this.contacts, gender);
+	}
+	
+	public void sortContactsByDate() {
+		this.contacts = sort.sortByDate(this.contacts);
 	}
 }

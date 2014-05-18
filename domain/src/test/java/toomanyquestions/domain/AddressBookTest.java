@@ -1,10 +1,11 @@
 package toomanyquestions.domain;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.junit.Test;
@@ -49,5 +50,30 @@ public class AddressBookTest
 			
 			assertThat("Filtered females", femalesContacts.size(), equalTo(1));
     	}
+    }
+	
+	@Test
+    public void sortByDate()
+    {
+		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(DomainConfiguration.class);)
+		{
+			//Create contacts
+			Contact contactOne = (Contact) ctx.getBean("contact", "Fabrizio", Gender.MALE, new GregorianCalendar(1978,4,15).getTime());
+			Contact contactTwo = (Contact) ctx.getBean("contact", "Emanuela", Gender.FEMALE,  new GregorianCalendar(1978,7,27).getTime());
+			Contact contactThree = (Contact) ctx.getBean("contact", "Gianluca", Gender.MALE,  new GregorianCalendar(1976,9,16).getTime());
+			
+			List <Contact> contacts = new ArrayList<Contact>();
+			contacts.add(contactOne);
+			contacts.add(contactThree);
+			contacts.add(contactTwo);
+			
+			//Create an address book
+			AddressBook addressBook = (AddressBook) ctx.getBean("addressBook", "MyAddressBook", contacts);
+			
+			//Filter Males
+			addressBook.sortContactsByDate();
+			
+			assertThat("Sort count", addressBook.getContacts().size(), equalTo(3));
+		}
     }
 }
