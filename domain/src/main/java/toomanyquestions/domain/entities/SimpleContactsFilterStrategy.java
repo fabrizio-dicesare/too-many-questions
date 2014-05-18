@@ -3,16 +3,16 @@ package toomanyquestions.domain.entities;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Component;
-
 import toomanyquestions.domain.entities.Contact.Gender;
 
-@Component
+/**
+ * Simple strategy to filter a list of contacts
+ */
 public class SimpleContactsFilterStrategy implements ContactsFilterStrategy {
 
-	@Override
+	@Override	
 	public List<Contact> filterByGender(List<Contact> contactsToFilter, Gender gender) {
-		return contactsToFilter.stream().filter(c -> c.getGender() == Contact.Gender.MALE).collect(Collectors.toList());		
+		return contactsToFilter.stream().filter(c -> c.getGender() == gender).collect(Collectors.toList());		
 	}
 
 }

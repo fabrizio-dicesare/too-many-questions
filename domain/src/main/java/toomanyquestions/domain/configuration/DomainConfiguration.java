@@ -12,6 +12,10 @@ import toomanyquestions.domain.entities.Contact;
 import toomanyquestions.domain.entities.Contact.Gender;
 import toomanyquestions.domain.entities.ContactsFilterStrategy;
 import toomanyquestions.domain.entities.SimpleContactsFilterStrategy;
+import toomanyquestions.domain.repositories.AddressBookRepository;
+import toomanyquestions.domain.repositories.CSVAddressBookRepository;
+import toomanyquestions.domain.repositories.CSVContactParser;
+import toomanyquestions.domain.repositories.ContactParser;
 
 @Configuration
 public class DomainConfiguration {
@@ -33,5 +37,15 @@ public class DomainConfiguration {
 	@Bean
 	public ContactsFilterStrategy contactsFilterStrategy() {
 		return new SimpleContactsFilterStrategy();
+	}
+	
+	@Bean 
+	public AddressBookRepository addressBookRepository() {
+		return new CSVAddressBookRepository(contactParser(), "C:\\AddressBooks");
+	}
+	
+	@Bean 
+	public ContactParser contactParser() {
+		return new CSVContactParser();
 	}
 }
