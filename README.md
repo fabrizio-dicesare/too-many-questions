@@ -8,6 +8,6 @@ The libraries are Spring, OpenCSV and Junit (with Hamcrest) for the tests.
 <br><br>
 The project consists of a DDD inspired domain and some unit and functional tests. For the time being the only client code that uses the domain to answer the Gumtree questions is the functional tests code. Other client code (e.g. human interface or restful service provider code) should act like the code in functional tests.  
 <br><br>
-The process I used to develop this project is TDD, inspired by XP principles ("The simplest thing that could possibly work" in particular :) 
+I used some XP practices to develop this little project (TDD and "The simplest thing that could possibly work" in particular :) 
 <br><br>
 P.S. I enjoyed this pet project, because I had the opportunity to learn and use some new tools and libraries that I read about but never had the chance to use before. 
